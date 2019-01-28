@@ -34,22 +34,28 @@ def main():
 
     ops = [
         ('a', 'apply --recursive -f', None, None),
+        ('e', 'edit', None, None),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs -f', None, None),
         ('p', 'proxy', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
+        ('rmnow', 'delete --grace-period=0 --force', None, None),
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm'], None),
-        ('dep', 'deployment', ['g', 'd', 'rm'], None),
-        ('svc', 'service', ['g', 'd', 'rm'], None),
-        ('ing', 'ingress', ['g', 'd', 'rm'], None),
-        ('cm', 'configmap', ['g', 'd', 'rm'], None),
-        ('sec', 'secret', ['g', 'd', 'rm'], None),
+        ('po', 'pods', ['g', 'e','d', 'rmnow','rm'], None),
+        ('dep', 'deployment', ['g', 'e','d', 'rm'], None),
+        ('svc', 'service', ['g','e','d', 'rm'], None),
+        ('ss', 'statefulset', ['g', 'e','d', 'rm'], None),
+        ('pvc', 'pvc', ['g','e', 'd', 'rm'], None),
+        ('pv', 'pv', ['g','e', 'd', 'rm'], None),
+        ('ep', 'endpoints', ['g','e', 'd', 'rm'], None),
+        ('ing', 'ingress', ['g','e', 'd', 'rm'], None),
+        ('cm', 'configmap', ['g','e', 'd', 'rm'], None),
+        ('sec', 'secret', ['g','e', 'd', 'rm'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
         ]
